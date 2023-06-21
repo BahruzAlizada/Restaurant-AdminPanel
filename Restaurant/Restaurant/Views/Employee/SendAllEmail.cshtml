@@ -1,0 +1,32 @@
+﻿@model List<Employee>
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Mesaj Göndər</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+                    <div class="mb-3 form-group">
+                        <label class="form-label">Mətnin başlığı</label>
+                        <input name="subject" class="form-control" />
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label class="form-label"> Mesaj</label>
+                        <textarea name="message" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary my-3">Göndər</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri Qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
