@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Restaurant.DAL;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Controllers
 {
+    [Authorize(Roles = "Admin,ComManager")]
     public class PositionController : Controller
     {
         private readonly AppDbContext _db;

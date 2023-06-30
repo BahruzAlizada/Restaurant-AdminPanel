@@ -26,6 +26,7 @@
                         <th>Email</th>
                         <th>Telefon</th>
                         <th>Doğum tarixi</th>
+                        <th>Başlama Tarixi</th>
                         <th>Vəzifə</th>
                         <th>Maaş</th>
 
@@ -41,8 +42,9 @@
                             <td>@item.Email</td>
                             <td>@item.Phone</td>
                             <td>@item.Brith.ToShortDateString()</td>
+                            <td>@item.StartTime.ToShortDateString()</td>
                             <td>@item.Position.Name</td>
-                            <td>@item.Position.Salary</td>
+                            <td>@item.Position.Salary AZN</td>
                             <td>
                                 <div style="display:flex;justify-content:flex-end">
                                     <a asp-action="SendEmail" asp-route-id="@item.Id" class="btn btn-primary text-white" style="margin-right:10px"> <i class="fa-sharp fa-solid fa-envelope"></i> </a>

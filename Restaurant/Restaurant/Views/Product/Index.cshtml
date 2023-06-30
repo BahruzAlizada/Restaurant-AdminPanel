@@ -1,0 +1,102 @@
+﻿@model List<Product>
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>
+            Məhsullar
+        </h2>
+        <div>
+            <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
+                <i class="fa-sharp fa-solid fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table id="table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Şəkil</th>
+                        <th>Ad</th>
+                        <th>Təsvir</th>
+                        <th>Qiymət</th>
+                        <th>Kategoriya</th>
+                        <th>Ölçü</th>
+                        <th>Status</th>
+                        <th style="text-align:right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Product item in Model)
+                    {
+                        <tr>
+                            <td>
+                                  <img src="~/assets/img/product/@item.Image" style="height:85px;width:130px;object-fit:cover;">                    
+                            </td>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>@item.Price AZN</td>
+                            <td>@item.Category.Name</td>
+                            <td>@item.ProductSize.Size</td>
+                            <td>
+                                @if (item.IsDeactive)
+                                {
+                                    <span style="background-color:red;color:white;padding:6px 4px;">Deaktivdir</span>
+                                }
+                                else
+                                {
+                                    <span style="background-color:green;color:white;padding:6px 4px;">Aktivdir</span>
+                                }
+                            </td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
+                                    @if (item.IsDeactive)
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-success text-white" style="margin-right:10px;width:117px;">Aktiv Et</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-danger text-white" style="margin-right:10px;width:117px;">Deaktiv Et</a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />
+
+@section Css{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" />
+}
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+}

@@ -1,0 +1,41 @@
+﻿@model QRCodeModel
+
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div class="row" style="display:flex;">
+
+				<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+				<div class="col-6">
+					<div class="form-group">
+						<label asp-for="QrCodeText" class="control-label">Mətni bura daxil edin</label>
+						<input style="width:400px; height:50px;" asp-for="QrCodeText" class="form-control" />
+						<span class="text-danger" asp-validation-for="QrCodeText"></span>
+					</div>
+
+					<div class="my-4">
+						<button type="submit" class="btn btn-outline-success">Yarat</button>
+					</div>
+				</div>
+
+				@if (Model.returnQRUrl != null)
+				{
+					<div class="col-4">
+						<div class="form-control">
+							<img src="@Model.returnQRUrl" class="img-thumbnail" />
+						</div>
+
+						<form method="post" action="QrCodeImgDownload">
+							<div class="my-4 d-flex">
+								<button type="submit" class="btn btn-success">Qr kodu Yüklə</button>
+							</div>
+						</form>
+
+					</div>
+				}
+
+			</div>
+
+		</form>
+	</div>
+</div>

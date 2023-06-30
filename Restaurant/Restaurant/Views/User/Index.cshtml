@@ -1,0 +1,73 @@
+﻿@model List<UserVM>
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>
+            İstifadəçilər
+        </h2>
+        <div>
+            <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
+                <i class="fa-sharp fa-solid fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table id="table" class="table table-bordered">
+                <thead>
+                    <tr>      
+                        <th>Ad Soyad</th>
+                        <th>İstifadəçi adı</th>
+                        <th>Email</th>
+                        <th>Telefon</th>
+                        <th>Rol</th>
+                        <th>Status</th>
+                        <th style="text-align:right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UserVM item in Model)
+                    {
+                        <tr>  
+                            <td>@item.FullName</td>
+                            <td>@item.Username</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Role</td>
+                            <td>
+                                @if (item.IsDeactive)
+                                {
+                                    <span style="background-color:red;color:white;padding:6px 4px;">Deaktivdir</span>
+                                }
+                                else
+                                {
+                                    <span style="background-color:green;color:white;padding:6px 4px;">Aktivdir</span>
+                                }
+                            </td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    <a asp-action="ResetPassword" asp-route-id="@item.Id" class="btn btn-warning text-white" style="margin-right:10px">Şifrəni sıfırla</a>
+                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
+                                    @if (item.IsDeactive)
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-success text-white" style="margin-right:10px;width:117px;">Aktiv Et</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-danger text-white" style="margin-right:10px;width:117px;">Deaktiv Et</a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />
+

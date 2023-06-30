@@ -18,6 +18,7 @@ namespace Restaurant.Models
         public string Phone { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         public DateTime Brith { get; set; }
+        public DateTime StartTime { get; set; } = DateTime.Today;
         public Position Position { get; set; }
         public int PositionId { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Restaurant.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Controllers
 {
+    [Authorize(Roles ="Admin,ComManager")]
     public class HomeController : Controller
     {
         public IActionResult Index()

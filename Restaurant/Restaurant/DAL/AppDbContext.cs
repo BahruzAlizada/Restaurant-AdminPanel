@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Restaurant.Models;
 
 namespace Restaurant.DAL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -12,5 +13,14 @@ namespace Restaurant.DAL
         public DbSet<Position> Positions { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<SpecialMenu> SpecialMenus { get; set; }
+
+        public DbSet<Profit> Profits { get; set; }
+        public DbSet<Cost> Costs { get; set; }
+        public DbSet<Salary> Salarys { get; set; }
+        public DbSet<Total> Totals { get; set; }
     }
 }
