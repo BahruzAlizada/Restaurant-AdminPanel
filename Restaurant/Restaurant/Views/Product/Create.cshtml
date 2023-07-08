@@ -28,24 +28,26 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label>Aid olduğu kateqoriyanı seç</label>
-                        <select class="form-control" name="categoryId">
-                            @foreach (Category category in ViewBag.Categories)
-                            {
-                                <option value="@category.Id">@category.Name</option>
-                            }
-                        </select>
-                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0 form-group">
+                            <label>Aid olduğu kateqoriyanı seç</label>
+                            <select class="form-control" name="categoryId">
+                                @foreach (Category category in ViewBag.Categories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Ölçüsün seç</label>
-                        <select class="form-control" name="sizeId">
-                            @foreach (ProductSize productSize in ViewBag.Sizes)
-                            {
-                                <option value="@productSize.Id">@productSize.Size</option>
-                            }
-                        </select>
+                        <div class="col mb-0 form-group">
+                            <label>Ölçüsün seç</label>
+                            <select class="form-control" name="sizeId">
+                                @foreach (ProductSize productSize in ViewBag.Sizes)
+                                {
+                                    <option value="@productSize.Id">@productSize.Size</option>
+                                }
+                            </select>
+                        </div>
                     </div>
 
                     <div class="mb-3 form-group">

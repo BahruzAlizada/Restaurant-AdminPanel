@@ -131,6 +131,31 @@ namespace Restaurant.Controllers
         }
         #endregion
 
+        #region Salary
+        public async Task<IActionResult> Salary(int? id)
+        {
+            Employee employee = await _db.Employees.Include(x=>x.Position).FirstOrDefaultAsync(x => x.Id == id);
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Salary")]
+        public async Task<IActionResult> SalaryPost(int? id)
+        {       
+            Employee employee = await _db.Employees.Include(x=>x.Position).FirstOrDefaultAsync(x => x.Id == id);
+            Salary salary = new Salary();
+            salary.Employee = employee.Name + employee.Surname;
+            salary.By = User.Identity.Name;
+            salary.Amount = employee.Position.Salary;
+
+
+            await _db.Salarys.AddAsync(salary);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        #endregion
+
         #region SendEmail
         public async Task<IActionResult> SendEmail(int? id)
         {

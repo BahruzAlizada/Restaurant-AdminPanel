@@ -118,7 +118,6 @@ C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Account\Profile.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -178,7 +177,6 @@ C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\User\Update.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\User\ResetPassword.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\_LoginLayout.cshtml.g.cs
-C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Profit\Index.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Profit\Create.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Profit\Update.cshtml.g.cs
@@ -192,3 +190,20 @@ C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\QrCode\Create.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\Components\HomeMoney\Default.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\ErrorPage\Error404.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Table\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Table\Create.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Table\Update.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Reservation\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Reservation\Create.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Reservation\Update.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Reservation\Delete.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Cash\Create.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Cash\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Cash\Status.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Cash\Update.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\_ProductList.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\_OfisiantLayout.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Employee\Salary.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Salary\Index.cshtml.g.cs

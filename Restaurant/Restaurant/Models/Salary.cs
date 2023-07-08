@@ -11,5 +11,6 @@ namespace Restaurant.Models
         public string Description { get; set; } = "Maaş";
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow.AddHours(4);
         public string By { get; set; }
+        public string Employee { get; set; }
     }
 }

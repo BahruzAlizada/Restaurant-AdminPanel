@@ -1,0 +1,43 @@
+﻿@model List<Product>
+
+@if (Model != null && Model.Count > 0)
+{     
+    <div class="row" style="display:flex;"> 
+            @foreach (var product in Model)
+            {
+            <div class="col-3">
+               <div style="height:170px;width:216px;" class="card">
+                    <a multipe href="#" onclick="addToSelection(@product.Id)">
+                       <div class="card-body">
+                           <img class="card-img-top mx-auto" src="~/assets/img/product/@product.Image" style="height: 100px; width: 100px;" alt="Card image cap">
+                           <p class="card-text text-align">@product.Name - @product.ProductSize.Size - @product.Price AZN</p>
+                       </div>
+                   </a>
+               </div>
+            </div>
+            } 
+    </div>
+
+    <select id="select" multiple name="productsId[]" hidden></select>
+
+    @section ScriptOf{
+    <script>
+        function addToSelection(productId) {
+            var selectElement = document.getElementById("select");
+            var optionElement = document.createElement("option");
+            optionElement.value = productId;
+            optionElement.text = productId;
+            selectElement.appendChild(optionElement);
+        }
+    </script>
+    }
+   
+}
+else
+{
+    <p>Bu kateqoriyaya aid məhsul yoxdur </p>
+}
+
+@section Scripts{
+
+}

@@ -22,5 +22,6 @@ namespace Restaurant.Models
         public bool IsDeactive { get; set; }
         public ProductSize ProductSize { get; set; }
         public int ProductSizeId { get; set; }
+        public List<CashProduct> CashProducts { get; set; }
     }
 }

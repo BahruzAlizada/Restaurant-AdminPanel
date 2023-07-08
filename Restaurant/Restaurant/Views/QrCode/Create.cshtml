@@ -21,15 +21,12 @@
 				@if (Model.returnQRUrl != null)
 				{
 					<div class="col-4">
+
 						<div class="form-control">
 							<img src="@Model.returnQRUrl" class="img-thumbnail" />
 						</div>
 
-						<form method="post" action="QrCodeImgDownload">
-							<div class="my-4 d-flex">
-								<button type="submit" class="btn btn-success">Qr kodu Yüklə</button>
-							</div>
-						</form>
+						
 
 					</div>
 				}

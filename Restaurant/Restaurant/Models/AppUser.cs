@@ -6,7 +6,6 @@ namespace Restaurant.Models
     public class AppUser : IdentityUser
     {
         public string FullName { get; set; }
-        public string Image { get; set; }
         public DateTime CreatedTime { get; set; }
         public bool IsDeactive { get; set; }
     }

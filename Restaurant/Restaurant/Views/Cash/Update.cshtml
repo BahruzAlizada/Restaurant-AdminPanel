@@ -1,0 +1,99 @@
+﻿@model Cash
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Dəyiş</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+                    <div class="row g-2">
+
+                        <div class="col mb-0 form-group">
+                            <label>Masanı seç</label>
+                            <select class="form-control" name="tableId">
+                                @foreach (Table table in ViewBag.Tables)
+                                {
+                                    if (Model.TableId == table.Id)
+                                    {
+                                        <option selected value="@table.Id">
+                                            @table.Name -  @if (!table.ForTwoPerson)
+                                            {
+                                                <span>2 nəfərlik masa</span>
+                                            }
+                                            else
+                                            {
+                                                <span>4 nəfərlik masa</span>
+                                            }
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@table.Id">
+                                            @table.Name -  @if (!table.ForTwoPerson)
+                                            {
+                                                <span>2 nəfərlik masa</span>
+                                            }
+                                            else
+                                            {
+                                                <span>4 nəfərlik masa</span>
+                                            }
+                                        </option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+
+
+
+
+
+                        <div class="col mb-0 form-group">
+                            <label>Məhsulu seç</label>
+                            <select id="productSelect" class="form-control" multiple name="productsId[]">
+                                @foreach (Product product in ViewBag.Products)
+                                {
+                                    <option value="@product.Id">@product.Name</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary my-3">Dəyiş</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri Qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptOf{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        // Seçimlerin tutulacağı nesne
+        var selections = {};
+
+        // Sayfa yüklendiğinde çalışacak fonksiyon
+        document.addEventListener("DOMContentLoaded", function () {
+            var selectElement = document.getElementById("productSelect");
+
+            // Her seçim değiştiğinde adedi güncelle
+            selectElement.addEventListener("change", function () {
+                var productId = this.value;
+                var quantity = parseInt(prompt("Ədədi daxil edin:"));
+
+                if (isNaN(quantity) || quantity < 0) {
+                    alert("Ədədi düzgün daxil edin!");
+                    return;
+                }
+
+                selections[productId] = quantity;
+            });
+        });
+    </script>
+}

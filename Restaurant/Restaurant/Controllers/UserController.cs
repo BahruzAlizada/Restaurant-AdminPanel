@@ -9,6 +9,7 @@ using Restaurant.ViewsModel;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Restaurant.Controllers
@@ -38,7 +39,6 @@ namespace Restaurant.Controllers
                 UserVM user = new UserVM
                 {
                     Id=appuser.Id,
-                    Image = appuser.Image,
                     FullName = appuser.FullName,
                     Username = appuser.UserName,
                     Email = appuser.Email,
@@ -58,7 +58,8 @@ namespace Restaurant.Controllers
             ViewBag.Roles = new List<string>
             {
                 Helpers.Role.Admin.ToString(),
-                Helpers.Role.ComManager.ToString()
+                Helpers.Role.ComManager.ToString(),
+                Helpers.Role.Ofisiant.ToString()
             };
 
             return View();
@@ -72,27 +73,14 @@ namespace Restaurant.Controllers
             ViewBag.Roles = new List<string>
             {
                 Helpers.Role.Admin.ToString(),
-                Helpers.Role.ComManager.ToString()
+                Helpers.Role.ComManager.ToString(),
+                Helpers.Role.Ofisiant.ToString()
             };
 
-            #region Image
-            if (!createVM.Photo.IsImage())
-            {
-                ModelState.AddModelError("Photo", "Sadəcə şəkil tipli");
-                return View();
-            }
-            if(createVM.Photo.IsOlder512Kb())
-            {
-                ModelState.AddModelError("Photo", "Maksimum 512Kb");
-                return View();
-            }
-            string folder = Path.Combine(_env.WebRootPath, "assets", "img", "user");
-            createVM.Image = await createVM.Photo.SaveFileAsync(folder);
-            #endregion
+           
 
             AppUser newuser = new AppUser
             {
-                Image=createVM.Image,
                 FullName = createVM.FullName,
                 UserName = createVM.UserName,
                 Email = createVM.Email,
@@ -129,11 +117,11 @@ namespace Restaurant.Controllers
             {
                 Helpers.Role.Admin.ToString(),
                 Helpers.Role.ComManager.ToString(),
+                Helpers.Role.Ofisiant.ToString()
             };
 
             UpdateVM updateVM = new UpdateVM
             {
-                Image=dbuser.Image,
                 FullName = dbuser.FullName,
                 Email = dbuser.Email,
                 Username = dbuser.UserName,
@@ -160,11 +148,11 @@ namespace Restaurant.Controllers
             {
                 Helpers.Role.Admin.ToString(),
                 Helpers.Role.ComManager.ToString(),
+                Helpers.Role.Ofisiant.ToString()
             };
 
             UpdateVM updateVM = new UpdateVM
             {
-                Image = dbuser.Image,
                 FullName = dbuser.FullName,
                 Email = dbuser.Email,
                 Username = dbuser.UserName,
@@ -173,28 +161,7 @@ namespace Restaurant.Controllers
             };
             #endregion
 
-            #region Image
-            if (update.Photo != null)
-            {
-                if (!update.Photo.IsImage())
-                {
-                    ModelState.AddModelError("Photo", "Sadəcə şəkil tipli");
-                    return View();
-                }
-                if (update.Photo.IsOlder512Kb())
-                {
-                    ModelState.AddModelError("Photo", "Maksimum 512 Kb");
-                    return View();
-                }
-                string folder = Path.Combine(_env.WebRootPath, "assets", "img", "user");
-                update.Image =await update.Photo.SaveFileAsync(folder);
-                string path = Path.Combine(_env.WebRootPath, folder, dbuser.Image);
-                if(System.IO.File.Exists(path))
-                    System.IO.File.Delete(path);
-                dbuser.Image = update.Image;
-            }
-            #endregion
-
+        
             dbuser.FullName=update.FullName;
             dbuser.Email=update.Email;
             dbuser.UserName = update.Username;
@@ -262,6 +229,25 @@ namespace Restaurant.Controllers
                 return View();
             }
 
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Activity
+        public async Task<IActionResult> Activity(string id)
+        {
+            if (id == null)
+                return NotFound();
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return BadRequest();
+
+           if(user.IsDeactive)
+                user.IsDeactive=false;
+           else
+                user.IsDeactive=true;
+
+            await _userManager.UpdateAsync(user);
             return RedirectToAction("Index");
         }
         #endregion

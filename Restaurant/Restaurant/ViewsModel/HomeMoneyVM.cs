@@ -1,6 +1,6 @@
 ﻿namespace Restaurant.ViewsModel
 {
-    public class HomeMoney
+    public class HomeMoneyVM
     {
         public double TotalCost { get; set; }
         public double TotalProfit { get; set; }

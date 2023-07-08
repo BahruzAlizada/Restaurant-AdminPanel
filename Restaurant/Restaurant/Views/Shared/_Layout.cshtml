@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
           rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" />
 
@@ -46,8 +46,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
-    <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" />
+   
     @RenderSection("Css",false)
 
     <!-- Page CSS -->
@@ -78,6 +77,7 @@
                         </a>
                     </li>
 
+
                     <!-- Layouts -->
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Cədvəl</span>
@@ -107,10 +107,18 @@
                         </ul>
                     </li>
 
-   
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Masalar</span></li>
+
+                    <li class="menu-item">
+                        <a asp-controller="Table" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div>Masalar</div>
+                        </a>
+                    </li>
+
                     <!-- Components -->
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Menyu</span></li>
-       
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Kassa və Menyu</span></li>
+
 
                     <!-- Extended components -->
                     <li class="menu-item">
@@ -133,7 +141,24 @@
                         </ul>
                     </li>
 
+                    <li class="menu-item">
+                        <a asp-controller="Cash" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bxs-cabinet"></i>
+                            <div>Kassa</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Rezervasiyalar</span></li>
+
+                    <li class="menu-item">
+                        <a asp-controller="Reservation" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-notepad"></i>
+                            <div>Rezervasiyalar</div>
+                        </a>
+                    </li>
+
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Qr Kod</span></li>
+
                     <li class="menu-item">
                         <a asp-controller="QrCode" asp-action="Create" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-qr-scan"></i>
@@ -168,7 +193,7 @@
                             </li>
 
                             <li class="menu-item">
-                                <a href="forms-input-groups.html" class="menu-link">
+                                <a asp-controller="Salary" asp-action="Index" class="menu-link">
                                     <div data-i18n="Input groups">Maaşlar</div>
                                 </a>
                             </li>
@@ -206,24 +231,27 @@
                                 <i class="bx bx-search fs-4 lh-0"></i>
                                 <input type="text"
                                        class="form-control border-0 shadow-none"
-                                       placeholder="Search..."
+                                       placeholder="Axtarış et..."
                                        aria-label="Search..." />
                             </div>
                         </div>
                         <!-- /Search -->
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
-                            <!-- Place this tag where you want the button to render. -->
-                           
-
                             <!-- User -->
-                          @await Component.InvokeAsync("Header")
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-white text-black dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @User.Identity.Name</button>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">çıxış et</a></li>
+                                </ul>
+                            </div>                                                 
                             <!--/ User -->
                         </ul>
                     </div>
                 </nav>
 
-                <!-- / Navbar -->
+                <!-- / Navbar -->  
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
@@ -253,8 +281,9 @@
     <!-- build:js assets/vendor/js/core.js -->
     <script src="~/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="~/assets/vendor/libs/popper/popper.js"></script>
-    <script src="~/assets/vendor/js/bootstrap.js"></script>
-    <script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>*@
+   <script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="~/assets/vendor/js/menu.js"></script>
     <!-- endbuild -->

@@ -56,7 +56,11 @@ namespace Restaurant.Controllers
                 ModelState.AddModelError("", "Sizin hesab bloklanıb");
                 return View();
             }
-            return RedirectToAction("Index", "Home");
+            if (await _userManager.IsInRoleAsync(user,Helpers.Role.Admin.ToString()))
+                return RedirectToAction("Index", "Home");
+            else
+                return RedirectToAction("Index", "Cash");
+
         }
         #endregion
 
@@ -68,12 +72,6 @@ namespace Restaurant.Controllers
         }
         #endregion
 
-        #region Profile
-        public IActionResult Profile()
-        {
-            return View();
-        }
-        #endregion
 
         #region ForgetPassword
         public  IActionResult ForgetPassword()
@@ -135,9 +133,9 @@ namespace Restaurant.Controllers
         #region CreateRoles
         //public async Task CreateRoles()
         //{
-        //    if (!await _roleManager.RoleExistsAsync(Helpers.Role.Admin.ToString()))
+        //    if (!await _roleManager.RoleExistsAsync(Helpers.Role.Ofisiant.ToString()))
         //    {
-        //        await _roleManager.CreateAsync(new IdentityRole { Name = Helpers.Role.Admin.ToString() });
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = Helpers.Role.Ofisiant.ToString() });
         //    }
         //    if (!await _roleManager.RoleExistsAsync(Helpers.Role.ComManager.ToString()))
         //    {

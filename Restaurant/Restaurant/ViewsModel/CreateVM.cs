@@ -7,9 +7,6 @@ namespace Restaurant.ViewsModel
 {
     public class CreateVM
     {
-        public string Image { get; set; }
-        [NotMapped]
-        public IFormFile Photo { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         public string FullName { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz")]

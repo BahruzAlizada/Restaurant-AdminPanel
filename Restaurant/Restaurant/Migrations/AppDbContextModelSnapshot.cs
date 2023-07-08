@@ -175,9 +175,6 @@ namespace Restaurant.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeactive")
                         .HasColumnType("bit");
 
@@ -225,6 +222,51 @@ namespace Restaurant.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.Cash", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("Cashes");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.CashProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CashId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CashId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CashProducts");
                 });
 
             modelBuilder.Entity("Restaurant.Models.Category", b =>
@@ -408,6 +450,38 @@ namespace Restaurant.Migrations
                     b.ToTable("Profits");
                 });
 
+            modelBuilder.Entity("Restaurant.Models.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("Reservations");
+                });
+
             modelBuilder.Entity("Restaurant.Models.Salary", b =>
                 {
                     b.Property<int>("Id")
@@ -425,6 +499,9 @@ namespace Restaurant.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Employee")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -469,6 +546,25 @@ namespace Restaurant.Migrations
                     b.HasIndex("ProductSizeId");
 
                     b.ToTable("SpecialMenus");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("ForTwoPerson")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tables");
                 });
 
             modelBuilder.Entity("Restaurant.Models.Total", b =>
@@ -549,6 +645,36 @@ namespace Restaurant.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Restaurant.Models.Cash", b =>
+                {
+                    b.HasOne("Restaurant.Models.Table", "Table")
+                        .WithMany("Cashs")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.CashProduct", b =>
+                {
+                    b.HasOne("Restaurant.Models.Cash", "Cash")
+                        .WithMany("CashProducts")
+                        .HasForeignKey("CashId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Restaurant.Models.Product", "Product")
+                        .WithMany("CashProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cash");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Restaurant.Models.Employee", b =>
                 {
                     b.HasOne("Restaurant.Models.Position", "Position")
@@ -579,6 +705,17 @@ namespace Restaurant.Migrations
                     b.Navigation("ProductSize");
                 });
 
+            modelBuilder.Entity("Restaurant.Models.Reservation", b =>
+                {
+                    b.HasOne("Restaurant.Models.Table", "Table")
+                        .WithMany("Reservations")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+                });
+
             modelBuilder.Entity("Restaurant.Models.SpecialMenu", b =>
                 {
                     b.HasOne("Restaurant.Models.Category", "Category")
@@ -598,6 +735,11 @@ namespace Restaurant.Migrations
                     b.Navigation("ProductSize");
                 });
 
+            modelBuilder.Entity("Restaurant.Models.Cash", b =>
+                {
+                    b.Navigation("CashProducts");
+                });
+
             modelBuilder.Entity("Restaurant.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -610,11 +752,23 @@ namespace Restaurant.Migrations
                     b.Navigation("Employees");
                 });
 
+            modelBuilder.Entity("Restaurant.Models.Product", b =>
+                {
+                    b.Navigation("CashProducts");
+                });
+
             modelBuilder.Entity("Restaurant.Models.ProductSize", b =>
                 {
                     b.Navigation("Products");
 
                     b.Navigation("SpecialMenus");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.Table", b =>
+                {
+                    b.Navigation("Cashs");
+
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

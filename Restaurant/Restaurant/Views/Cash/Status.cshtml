@@ -1,0 +1,24 @@
+﻿@model Cash
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"></h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+    
+
+                    <button type="submit" class="btn btn-primary my-3">Sistemə vur</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri Qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptOf{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QRCoder;
 using Restaurant.Helpers;
 using Restaurant.Models;
 using System;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace Restaurant.Controllers
 {
+    [Authorize(Roles = "Admin,ComManager")]
     public class QrCodeController : Controller
     {
         private readonly IWebHostEnvironment _env;
@@ -40,25 +43,5 @@ namespace Restaurant.Controllers
 			return View(code);
 		}
 		#endregion
-
-		#region Download
-		[HttpPost]
-		public async Task<IActionResult> QrCodeImgDownload(IFormFile qrCodeFile)
-		{
-			if (qrCodeFile != null && qrCodeFile.Length > 0)
-			{
-				string folder = Path.Combine(_env.WebRootPath, "assets", "img", "qrcode");
-				string filePath = Path.Combine(folder, "qrcode.png");
-
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					await qrCodeFile.CopyToAsync(fileStream);
-				}
-			}
-
-			return View();
-		}
-		#endregion
-
 	}
 }

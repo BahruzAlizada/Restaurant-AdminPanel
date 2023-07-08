@@ -4,6 +4,7 @@
   enum Role
     {
         Admin,
-        ComManager
+        ComManager,
+        Ofisiant
     }
 }

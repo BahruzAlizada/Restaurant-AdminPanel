@@ -13,10 +13,12 @@ namespace Restaurant.Controllers
     [Authorize(Roles ="Admin,ComManager")]
     public class HomeController : Controller
     {
+        #region Index
         public IActionResult Index()
         {
             return View();
         }
+        #endregion
 
         public IActionResult Error()
         {

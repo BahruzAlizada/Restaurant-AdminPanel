@@ -1,0 +1,94 @@
+﻿@model CashIndexVM
+
+@{
+    Layout = "_OfisiantLayout";
+}
+
+<hr class="my-5" />
+
+<div class="container">
+    <div class="row">
+        @foreach(var item in Model.Tables)
+        {
+                <div class="col-md-6 col-lg-4">
+                        <div class="card text-center mb-3" style="background-color:green;">
+                            <div class="card-body">
+                                <h5 class="card-title text-white">@item.Name</h5>
+                                <p class="card-text text-white">
+                                    @if(!item.ForTwoPerson){<span>2 nəfərlik masa</span>}
+                                    else{<span>4 nəfərlik masa</span>}
+                                </p>
+                                <a asp-action="Create" asp-route-id="@item.Id" class="btn btn-info text-white"><i class="fa-sharp fa-solid fa-plus"></i></a>
+                        <a asp-action="Status" asp-route-id="@item.Id" class="btn btn-dark text-white"> <i class="menu-icon tf-icons bx bx-check"></i></a>
+                                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning text-white"><i class="fa-solid fa-pen"></i></a>
+                            </div>
+                        </div>
+                </div>
+        }
+    </div>
+</div>
+
+<!-- Bordered Table -->
+@*<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>Kassa</h2>
+        <div>
+            <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
+                <i class="fa-sharp fa-solid fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Masa</th>
+                        <th>Sifarişlər</th>
+                        <th>Məbləğ</th>
+                        <th>Status</th>
+                        <th style="text-align:right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Cash item in Model.Cashes)
+                    {
+                        <tr>
+                            <td>@item.Table.Name</td>
+                            <td>
+                                @foreach(var product in item.CashProducts)
+                                {
+                                    <span>@product.Product.Name</span>
+                                }
+                            </td>
+                            <td>@item.Price Azn</td>
+                            <td>
+                                @if (!item.Status)
+                                {
+                                    <span style="background-color:red;color:white;padding:6px 4px;">Ödənilməyib</span>
+                                }
+                                else
+                                {
+                                    <span style="background-color:green;color:white;padding:6px 4px;">Ödənildi</span>
+                                }
+                            </td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    @if(!item.Status)
+                                    {
+                                        <a asp-action="Status" asp-route-id="@item.Id" class="btn btn-success text-white" style="margin-right:10px"> <i class="menu-icon tf-icons bx bx-check"></i></a>
+                                        <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
+                                    }
+                                    
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger text-white" style="margin-right:10px"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>*@
+<!--/ Bordered Table -->
+

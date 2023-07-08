@@ -1,0 +1,61 @@
+﻿@model List<Table>
+@{
+    int count = 0;
+}
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>
+            Masalar
+        </h2>
+        <div>
+            <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
+                <i class="fa-sharp fa-solid fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Masa ad</th>
+                        <th>Neçə nəfər üçün</th>
+                        <th style="text-align:right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Table item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Name</td>
+                            <td>
+                                @if (!item.ForTwoPerson)
+                                {
+                                    <span>2 nəfər üçün Masa</span>
+                                }
+                                else
+                                {
+                                    <span>4 nəfər üçün Masa</span>
+                                }
+                            </td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />

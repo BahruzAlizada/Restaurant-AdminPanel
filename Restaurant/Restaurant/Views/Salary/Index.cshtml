@@ -1,0 +1,39 @@
+﻿@model List<Salary>
+
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>Maaşlar</h2>    
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table id="table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ad</th>
+                        <th>Tarix</th>
+                        <th>Miqdar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Salary item in Model)
+                    {
+                        <tr>
+                            <td>@item.Employee</td>
+                            <td>@item.CreatedTime.ToString("dd MMMM, yyyy")</td>
+                            <td>@item.Amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />
+
+
+

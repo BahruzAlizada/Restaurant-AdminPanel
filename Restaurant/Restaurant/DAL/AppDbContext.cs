@@ -22,5 +22,11 @@ namespace Restaurant.DAL
         public DbSet<Cost> Costs { get; set; }
         public DbSet<Salary> Salarys { get; set; }
         public DbSet<Total> Totals { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; } 
+        public DbSet<Table> Tables { get; set; }
+
+        public DbSet<Cash> Cashes { get; set; }
+        public DbSet<CashProduct> CashProducts { get; set; }
     }
 }

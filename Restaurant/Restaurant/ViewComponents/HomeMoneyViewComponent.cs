@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Controllers;
 using Restaurant.DAL;
 using Restaurant.Models;
+using Restaurant.ViewsModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,8 +20,24 @@ namespace Restaurant.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             List<Cost> costs = await _db.Costs.ToListAsync();
-            List<Profit> profit = await _db.Profits.ToListAsync();
-            return View();
+            double totalcost=0;
+            foreach (var cost in costs)
+            {
+                totalcost += cost.Amount;
+            };
+            List<Profit> profits = await _db.Profits.ToListAsync();
+            double totalprofit = 0;
+            foreach (var profit in profits)
+            {
+                totalprofit += profit.Amount;
+            }
+
+            HomeMoneyVM homeMoney = new HomeMoneyVM
+            {
+                TotalCost = totalcost,
+                TotalProfit = totalprofit
+            };
+            return View(homeMoney);
         }
     }
 }

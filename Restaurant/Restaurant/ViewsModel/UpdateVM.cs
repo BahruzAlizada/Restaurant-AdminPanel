@@ -5,10 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Restaurant.ViewsModel
 {
     public class UpdateVM
-    {
-        public string Image { get; set; }
-        [NotMapped]
-        public IFormFile Photo { get; set; }
+    {  
         [Required(ErrorMessage ="Bu xana boş ola bilməz")]
         public string FullName { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz")]

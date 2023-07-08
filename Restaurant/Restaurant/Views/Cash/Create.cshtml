@@ -1,0 +1,79 @@
+﻿@model Cash
+
+@{
+    Layout = "_OfisiantLayout";
+}
+
+
+<div class="row">
+    <div class="col-12">
+            <div class="card-body">
+                <form method="post">
+                   
+
+                <div style="margin-top:50px;" class="row">
+                    <div class="col-12">
+                           
+                            @foreach (Category category in ViewBag.Categories)
+                            {
+                                <a class="btn btn-primary text-white my-1" onclick="getProducts(@category.Id)">@category.Name</a>
+                            }
+                    </div>
+                </div>
+
+                <div style="margin-top:50px;" class="row">
+                    <div class="col-3">
+                        <div>
+                            <p style="text-align:center">Sifarişlər</p>
+
+                        </div>
+                    </div>
+                    <div class="col-9">
+                      <div class="row" id="productList">
+                        
+                     </div>
+                    </div>
+                </div>
+             @*
+                <select id="select" hidden multipe name="productsId[]"></select>*@
+                       
+                   
+
+                 
+                    <button type="submit" class="btn btn-outline-success my-3">Yarat</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Geri Qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+@section ScriptOf{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function getProducts(categoryId) {
+            $.ajax({
+                url: '/Cash/GetProductsByCategory',
+                type: 'GET',
+                data: { categoryId: categoryId },
+                success: function (response) {
+                    $('#productList').html(response);
+                },
+                error: function () {
+                    $('#productList').html('<p>Ürünler yüklenirken bir hata oluştu.</p>');
+                }
+            });
+        }
+
+
+        function addToSelection(productId) {
+            var selectElement = document.getElementById("select");
+            var optionElement = document.createElement("option");
+            optionElement.value = productId;
+            optionElement.text = productId;
+            selectElement.appendChild(optionElement);
+        }
+
+    </script>
+}

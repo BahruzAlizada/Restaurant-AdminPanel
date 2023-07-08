@@ -7,7 +7,5 @@ namespace Restaurant.Models
     {
         public string QrCodeText { get; set; }
         public string returnQRUrl { get; set; }
-        [NotMapped]
-        public IFormFile Photo { get; set; }
     }
 }

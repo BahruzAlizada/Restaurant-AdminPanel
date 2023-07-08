@@ -1,0 +1,84 @@
+﻿@model Reservation
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Dəyiş</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Name" class="form-label"> Ad</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label asp-for="Phone" class="form-label"> Telefon</label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Phone"></span>
+                        </div>
+                        <div class="col mb-0">
+                            <label asp-for="Time" class="form-label"> Saat</label>
+                            <input asp-for="Time" type="time" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Time"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Masanı seç</label>
+                        <select class="form-control" name="tableId">
+                            @foreach (Table table in ViewBag.Tables)
+                            {
+                                if (Model.TableId == table.Id)
+                                {
+                                    <option selected value="@table.Id">
+                                        @table.Name -  @if (!table.ForTwoPerson)
+                                        {
+                                            <span>2 nəfərlik masa</span>
+                                        }
+                                        else
+                                        {
+                                            <span>4 nəfərlik masa</span>
+                                        }
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@table.Id">
+                                        @table.Name -  @if (!table.ForTwoPerson)
+                                        {
+                                            <span>2 nəfərlik masa</span>
+                                        }
+                                        else
+                                        {
+                                            <span>4 nəfərlik masa</span>
+                                        }
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Description" class="form-label"> Xüsusi İstək</label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary my-3">Dəyiş</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri Qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
