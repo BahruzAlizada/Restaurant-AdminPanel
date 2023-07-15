@@ -5,6 +5,7 @@
     {
         Admin,
         ComManager,
-        Ofisiant
+        Ofisiant,
+        Admistrator
     }
 }

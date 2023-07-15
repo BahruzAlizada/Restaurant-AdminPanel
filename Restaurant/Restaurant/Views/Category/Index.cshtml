@@ -6,56 +6,10 @@
     <div class="card-header" style="display:flex;justify-content:space-between">
         <h2>Kateqoriyalar</h2>
         <div>
-           @* <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
+            <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
                 <i class="fa-sharp fa-solid fa-plus"></i>
-            </a>*@
-            <!-- Vertically Centered Modal -->
-            <div class="col-lg-4 col-md-6">
-                <div class="mt-3">
-                    <!-- Button trigger modal -->
-                    <button style="background-color:green; border:1px solid green;" type="button"
-                            class="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modalCenter">
-                        <i class="fa-sharp fa-solid fa-plus"></i>
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalCenterTitle">Kateqoriya Yarat</h5>
-                                    <button type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post" id="createForm">
-                                        <div class="row g-2">
-                                            <div class="col mb-0">
-                                                <label class="form-label">Adı</label>
-                                                <input id="nameInput" name="name" class="form-control" />
-                                                <span>@ViewBag.Message</span>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                        Bağla
-                                    </button>
-                                    <a id="createButton"  class="btn btn-success text-white">Yarat</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Vertically Centered Modal -->
+            </a>
         </div>
-       
     </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
@@ -130,33 +84,3 @@
 
 <hr class="my-5" />
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $('#createButton').click(function () {
-                var name = $('#nameInput').val();
-
-                // Verileri AJAX isteği için bir nesne olarak hazırla
-                var data = {
-                    name: name
-                };
-
-                // AJAX isteği yap
-                $.ajax({
-                    url: '/Category/Index/', // Controller yönteminin URL'si
-                    type: 'POST',
-                    data: data,
-                    success: function (response) {
-                      console.log("Ok");
-                        $('#modalCenter').modal('hide');   
-                    },
-                    error: function (xhr, status, error) {
-                        $('#nameInput').after('<span class="text-danger" asp-validation-summary="Name">' + @ViewBag.Message + '</span>');
-                        // İstek sırasında hata oluştuğunda yapılacak işlemler
-                        console.log('Hata oluştu: ' + error);
-                    }
-                });
-            });
-        });
-    </script>
-}

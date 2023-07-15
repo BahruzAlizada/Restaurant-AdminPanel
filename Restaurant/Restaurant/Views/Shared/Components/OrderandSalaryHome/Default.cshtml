@@ -1,0 +1,31 @@
+﻿@model OrderandSalaryVM
+
+<div class="col-6 mb-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title d-flex align-items-start justify-content-between">
+                <a asp-controller="Employee" asp-action="Index">
+                    <div class="avatar flex-shrink-0">
+                        <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                    </div>
+                </a>
+            </div>
+            <span class="d-block mb-1">Aylıq ödəniləcək Maaşlar</span>
+            <h5 class="card-title text-nowrap mb-2">@Model.TotalSalary Azn</h5>
+        </div>
+    </div>
+</div>
+
+<div class="col-6 mb-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title d-flex align-items-start justify-content-between">
+                <div class="avatar flex-shrink-0">
+                    <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                </div>
+            </div>
+            <span class="d-block mb-1">Günlük Sifarişlərin sayı</span>
+            <h5 class="card-title text-nowrap mb-2">@Model.DayTotalCash</h5>
+        </div>
+    </div>
+</div>

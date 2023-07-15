@@ -4,9 +4,10 @@
 <!-- Bordered Table -->
 <div class="card">
     <div class="card-header" style="display:flex;justify-content:space-between">
-        <h2>
-            Məhsullar
-        </h2>
+        <form method="get">
+            <input type="search" name="search">
+        </form>
+
         <div>
             <a asp-action="Create" class="btn btn-success text-white" style="margin-right:10px">
                 <i class="fa-sharp fa-solid fa-plus"></i>
@@ -68,35 +69,33 @@
                 </tbody>
             </table>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="pagnation my-2">
+                    <ul style="list-style:none;display:flex;justify-content:center;">
+                        <li class="page-item prev">
+                            <a class="page-link" asp-route-page="page">
+                                <i class="tf-icon bx bx-chevrons-left"></i>
+                            </a>
+                        </li>
+                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+                        {
+                            <li class="page-item  @(i == ViewBag.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                        }
+                        <li class="page-item next">
+                            <a class="page-link" asp-route-page="@ViewBag.PageCount">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--/ Bordered Table -->
 
 <hr class="my-5" />
 
-@section Css{
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" />
-}
 
-@section Scripts{
 
-    <script>
-        $(document).ready(function () {
-            $('#table').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
-}

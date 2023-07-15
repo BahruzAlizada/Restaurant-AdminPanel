@@ -36,16 +36,12 @@ namespace Restaurant.Controllers
                 item.Price += item.Price * 3 / 100;   
             }
 
-            
-
             CashIndexVM cashindex = new CashIndexVM
             {
                 Tables = tables,
                 Cashes = cashes
             };
             
-            
-
             return View(cashindex);
         }
         #endregion
@@ -262,6 +258,40 @@ namespace Restaurant.Controllers
         //    await _db.SaveChangesAsync();
         //    return RedirectToAction("Index");
         //}
+        #endregion
+
+        #region ProductOrder
+        public async Task<IActionResult> ProductOrder(int proId)
+        {        
+            Product product = await _db.Products.Include(x => x.CashProducts)
+                .ThenInclude(x => x.Cash).Include(x => x.Category).FirstOrDefaultAsync(x => x.Id==proId);
+
+            //List<CashProduct> cashProducts = new List<CashProduct>();
+            //foreach (var item in cashProducts)
+            //{
+            //    CashProduct cashProduct = new CashProduct
+            //    {
+            //        ProductId = product.Id,
+            //        CashId = item.CashId
+            //    };
+            //    cashProducts.Add(cashProduct);
+            //};
+
+            //return View();
+            Cash cash = await _db.Cashes.FindAsync();
+            CashProduct cashProduct = new CashProduct
+            {
+                ProductId = product.Id,
+                CashId = cash.Id // CashId değerini uygun bir şekilde belirleyin
+            };
+            product.CashProducts.Add(cashProduct);
+
+            // Değişikliği veritabanına kaydet
+            await _db.SaveChangesAsync();
+
+            // Başarılı yanıt dön
+            return Ok();
+        }
         #endregion
     }
 }

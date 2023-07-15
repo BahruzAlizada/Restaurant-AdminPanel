@@ -34,6 +34,7 @@ namespace Restaurant.Controllers
         {
             List<AppUser> dbusers = await _userManager.Users.ToListAsync();
             List<UserVM> userVM = new List<UserVM>();
+
             foreach (AppUser appuser in dbusers)
             {
                 UserVM user = new UserVM
@@ -59,7 +60,8 @@ namespace Restaurant.Controllers
             {
                 Helpers.Role.Admin.ToString(),
                 Helpers.Role.ComManager.ToString(),
-                Helpers.Role.Ofisiant.ToString()
+                Helpers.Role.Ofisiant.ToString(),
+                Helpers.Role.Admistrator.ToString()
             };
 
             return View();
@@ -74,7 +76,8 @@ namespace Restaurant.Controllers
             {
                 Helpers.Role.Admin.ToString(),
                 Helpers.Role.ComManager.ToString(),
-                Helpers.Role.Ofisiant.ToString()
+                Helpers.Role.Ofisiant.ToString(),
+                Helpers.Role.Admistrator.ToString()
             };
 
            
@@ -117,7 +120,8 @@ namespace Restaurant.Controllers
             {
                 Helpers.Role.Admin.ToString(),
                 Helpers.Role.ComManager.ToString(),
-                Helpers.Role.Ofisiant.ToString()
+                Helpers.Role.Ofisiant.ToString(),
+                Helpers.Role.Admistrator.ToString()
             };
 
             UpdateVM updateVM = new UpdateVM
@@ -148,7 +152,8 @@ namespace Restaurant.Controllers
             {
                 Helpers.Role.Admin.ToString(),
                 Helpers.Role.ComManager.ToString(),
-                Helpers.Role.Ofisiant.ToString()
+                Helpers.Role.Ofisiant.ToString(),
+                Helpers.Role.Admistrator.ToString()
             };
 
             UpdateVM updateVM = new UpdateVM

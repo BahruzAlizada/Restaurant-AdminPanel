@@ -28,5 +28,8 @@ namespace Restaurant.DAL
 
         public DbSet<Cash> Cashes { get; set; }
         public DbSet<CashProduct> CashProducts { get; set; }
+
+        public DbSet<Kitchen> Kitchens { get; set; }
+        public DbSet<KitchenBase> KitchenBases { get; set; }
     }
 }

@@ -4,9 +4,14 @@
     Layout = "_OfisiantLayout";
 }
 
+@if(User.IsInRole("Ofisiant"))
+{
+    <a>Xidmət haqqı</a>
+}
+
 <hr class="my-5" />
 
-<div class="container">
+<div class="container">99
     <div class="row">
         @foreach(var item in Model.Tables)
         {
@@ -19,7 +24,7 @@
                                     else{<span>4 nəfərlik masa</span>}
                                 </p>
                                 <a asp-action="Create" asp-route-id="@item.Id" class="btn btn-info text-white"><i class="fa-sharp fa-solid fa-plus"></i></a>
-                        <a asp-action="Status" asp-route-id="@item.Id" class="btn btn-dark text-white"> <i class="menu-icon tf-icons bx bx-check"></i></a>
+                                <a asp-action="Status" asp-route-id="@item.Id" class="btn btn-dark text-white"> <i class="menu-icon tf-icons bx bx-check"></i></a>
                                 <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning text-white"><i class="fa-solid fa-pen"></i></a>
                             </div>
                         </div>

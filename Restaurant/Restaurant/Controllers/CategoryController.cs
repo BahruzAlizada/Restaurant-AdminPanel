@@ -28,53 +28,32 @@ namespace Restaurant.Controllers
             List<Category> categories = await _db.Categories.OrderByDescending(x=>x.Id).Skip((page-1)*6).Take((int)(take)).ToListAsync();
             return View(categories);
         }
+        #endregion
+
+        #region Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Index(string name)
+        public async Task<IActionResult> Create(Category category)
         {
-            var existingCategory = await _db.Categories.AnyAsync(x => x.Name == name);
-            if (existingCategory)
+            #region Exist
+            bool isExist = await _db.Categories.AnyAsync(x => x.Name == category.Name);
+            if (isExist)
             {
-                ViewBag.Message = "Bu isimde bir kategori zaten mevcut.";
-               ModelState.AddModelError("Name","Bu isimde bir kategori zaten mevcut.");
+                ModelState.AddModelError("Name", "Bu adda kategoriya hal-hazırda mövcuddur");
                 return View();
             }
+            #endregion
 
-            Category category = new Category
-            {
-                Name = name
-            };
             await _db.Categories.AddAsync(category);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        #endregion
-
-        #region Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-
-        //public async Task<IActionResult> Create(Category category)
-        //{
-        //    #region Exist
-        //    bool isExist = await _db.Categories.AnyAsync(x => x.Name == category.Name);
-        //    if (isExist)
-        //    {
-        //        ModelState.AddModelError("Name", "Bu adda kategoriya hal-hazırda mövcuddur");
-        //        return View();
-        //    }
-        //    #endregion
-
-        //    await _db.Categories.AddAsync(category);
-        //    await _db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
         #endregion
 
         #region Update

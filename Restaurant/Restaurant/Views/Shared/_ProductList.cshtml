@@ -5,15 +5,19 @@
     <div class="row" style="display:flex;"> 
             @foreach (var product in Model)
             {
-            <div class="col-3">
-               <div style="height:170px;width:216px;" class="card">
-                    <a multipe href="#" onclick="addToSelection(@product.Id)">
-                       <div class="card-body">
-                           <img class="card-img-top mx-auto" src="~/assets/img/product/@product.Image" style="height: 100px; width: 100px;" alt="Card image cap">
-                           <p class="card-text text-align">@product.Name - @product.ProductSize.Size - @product.Price AZN</p>
-                       </div>
-                   </a>
-               </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="single-popular-items mb-50 text-center">
+                    <a id="productID" class="product-item" data-product-id="@product.Id">
+                        <div class="popular-img">
+                            <img class="card-img-top mx-auto" style="height:100px; width:120px;" src="~/assets/img/product/@product.Image">
+                        </div>
+                    </a>
+                    <input type="hidden" value="@product.Id">
+                    <div class="popular-caption">
+                        <p>@product.Name</p>
+                        
+                    </div>
+                </div>
             </div>
             } 
     </div>
@@ -22,13 +26,35 @@
 
     @section ScriptOf{
     <script>
-        function addToSelection(productId) {
-            var selectElement = document.getElementById("select");
-            var optionElement = document.createElement("option");
-            optionElement.value = productId;
-            optionElement.text = productId;
-            selectElement.appendChild(optionElement);
-        }
+        //var productId = $(this).next().val();
+      //var productId = $(this).attr("data-product-id");
+      //console.log(productId)
+      //  $(document).on("click", "#productID", function () {
+      //      $.ajax({
+      //          url: "/Cash/ProductOrder/",
+      //          type:'get',
+      //          data :
+      //          {
+      //              "proId" : productId 
+      //          },
+      //          success: function (html) {
+                   
+      //          }
+      //      });
+      //  });
+        $(document).on("click", ".product-item", function () {
+            var productId = $(this).attr("data-product-id");
+            $.ajax({
+                url: "/Cash/ProductOrder/",
+                type: 'get',
+                data: {
+                    "proId": productId
+                },
+                success: function (response) {
+                    // İşlemlerinizi gerçekleştirin
+                }
+            });
+        });
     </script>
     }
    
@@ -36,8 +62,4 @@
 else
 {
     <p>Bu kateqoriyaya aid məhsul yoxdur </p>
-}
-
-@section Scripts{
-
 }

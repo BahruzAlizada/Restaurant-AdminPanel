@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "_AdmistratorLayout";
+}
+
+@model KitchenBase
+
+<div class="row">
+    <div class="col-8 justify-content-center">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Mətbəxdəki Əsas şeylər</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Name" class="form-label"> Ad</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Quantity" class="form-label">Çəki,ölçü,miqdar və s.</label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Quantity"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Description" class="form-label">Təsvir</label>
+                        <input asp-for="Description" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Price" class="form-label">Qiymət</label>
+                        <input asp-for="Price" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Price"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Yarat</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri Qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptAdmistrator{
+    <partial name="_ValidationScriptsPartial" />
+}

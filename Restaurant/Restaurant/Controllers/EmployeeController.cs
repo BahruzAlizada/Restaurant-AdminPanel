@@ -149,6 +149,12 @@ namespace Restaurant.Controllers
             salary.By = User.Identity.Name;
             salary.Amount = employee.Position.Salary;
 
+            Total total = await _db.Totals.FirstOrDefaultAsync();
+            total.TotalCash -= salary.Amount;
+            total.LastModifiedTime = salary.CreatedTime;
+            total.LastModifiedBy = salary.By;
+            total.LastModifiedAmount = salary.Amount;
+            total.LastModifiedDescription = "Maaş";
 
             await _db.Salarys.AddAsync(salary);
             await _db.SaveChangesAsync();

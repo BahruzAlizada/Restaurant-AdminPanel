@@ -1,0 +1,31 @@
+﻿@model List<Salary>
+@{
+    int count = 0;
+}
+<div class="card-body">
+    <div class="table-responsive text-nowrap">
+        <table id="table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ad</th>
+                    <th>Tarix</th>
+                    <th>Miqdar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Salary item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.Employee</td>
+                        <td>@item.CreatedTime.ToString("dd MMMM, yyyy")</td>
+                        <td>@item.Amount</td>
+                    </tr>         
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

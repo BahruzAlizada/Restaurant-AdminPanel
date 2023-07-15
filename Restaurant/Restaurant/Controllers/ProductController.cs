@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.DAL;
 using Restaurant.Helpers;
 using Restaurant.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurant.Controllers
@@ -23,9 +26,20 @@ namespace Restaurant.Controllers
             _db = db;
         }
         #region Index
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search,int page=1)
         {
-            List<Product> products = await _db.Products.Include(x => x.Category).Include(x => x.ProductSize).ToListAsync();
+            if (!string.IsNullOrEmpty(search))
+            {
+                var product = from x in _db.Products select x;
+                var Product = await _db.Products.Where(x=>x.Name.Contains(search)).Include(x => x.Category).Include(x => x.ProductSize).ToListAsync();
+                return View(Product);
+            }
+            decimal take = 10;
+            ViewBag.PageCount=Math.Ceiling((decimal)(await _db.Products.Where(x=>!x.IsDeactive).CountAsync()/take));
+            ViewBag.CurrentPage = page;
+
+            List<Product> products = await _db.Products.Include(x => x.Category).Include(x => x.ProductSize).
+                OrderByDescending(x => x.Id).Skip((page - 1) * 10).Take((int)take).ToListAsync();
             return View(products);
         }
         #endregion

@@ -56,10 +56,14 @@ namespace Restaurant.Controllers
                 ModelState.AddModelError("", "Sizin hesab bloklanıb");
                 return View();
             }
-            if (await _userManager.IsInRoleAsync(user,Helpers.Role.Admin.ToString()))
+            if (await _userManager.IsInRoleAsync(user, Helpers.Role.Admin.ToString()))
                 return RedirectToAction("Index", "Home");
-            else
+            else if (await _userManager.IsInRoleAsync(user, Helpers.Role.Ofisiant.ToString()))
                 return RedirectToAction("Index", "Cash");
+            else if(await _userManager.IsInRoleAsync(user,Helpers.Role.Admistrator.ToString()))
+                return RedirectToAction("Index", "Kitchen");
+            else
+                return RedirectToAction("Index", "Home");
 
         }
         #endregion
@@ -71,7 +75,6 @@ namespace Restaurant.Controllers
             return RedirectToAction("Login", "Account");
         }
         #endregion
-
 
         #region ForgetPassword
         public  IActionResult ForgetPassword()
@@ -130,18 +133,18 @@ namespace Restaurant.Controllers
         }
         #endregion
 
-        #region CreateRoles
+        //#region CreateRoles
         //public async Task CreateRoles()
         //{
-        //    if (!await _roleManager.RoleExistsAsync(Helpers.Role.Ofisiant.ToString()))
+        //    if (!await _roleManager.RoleExistsAsync(Helpers.Role.Admistrator.ToString()))
         //    {
-        //        await _roleManager.CreateAsync(new IdentityRole { Name = Helpers.Role.Ofisiant.ToString() });
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = Helpers.Role.Admistrator.ToString() });
         //    }
         //    if (!await _roleManager.RoleExistsAsync(Helpers.Role.ComManager.ToString()))
         //    {
         //        await _roleManager.CreateAsync(new IdentityRole { Name = Helpers.Role.ComManager.ToString() });
         //    }
         //}
-        #endregion
+        //#endregion
     }
 }

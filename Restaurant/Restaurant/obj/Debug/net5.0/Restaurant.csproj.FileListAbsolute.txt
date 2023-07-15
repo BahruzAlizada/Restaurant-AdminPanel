@@ -207,3 +207,14 @@ C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\_OfisiantLayout.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Employee\Salary.cshtml.g.cs
 C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Salary\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\Components\OrderandSalaryHome\Default.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Total\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Salary\Detail.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Kitchen\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Shared\_AdmistratorLayout.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Kitchen\Create.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\Kitchen\Update.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\KitchenBase\Index.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\KitchenBase\Create.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\KitchenBase\Increase.cshtml.g.cs
+C:\Users\Esma\Desktop\GitHub Project\Restaurant-AdminPanel\Restaurant\Restaurant\obj\Debug\net5.0\Razor\Views\KitchenBase\Decrease.cshtml.g.cs

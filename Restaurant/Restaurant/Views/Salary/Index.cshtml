@@ -1,29 +1,34 @@
-﻿@model List<Salary>
+﻿@model List<Employee>
 
 <hr class="my-5" />
 
 <!-- Bordered Table -->
 <div class="card">
     <div class="card-header" style="display:flex;justify-content:space-between">
-        <h2>Maaşlar</h2>    
+        <h2>Maaşlar</h2>
+
+        <div>
+            <form method="get">
+                <input type="search" name="search" />
+            </form>
+        </div>
+
     </div>
+
+   
     <div class="card-body">
         <div class="table-responsive text-nowrap">
             <table id="table" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Ad</th>
-                        <th>Tarix</th>
-                        <th>Miqdar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Salary item in Model)
+                    @foreach (Employee item in Model)
                     {
                         <tr>
-                            <td>@item.Employee</td>
-                            <td>@item.CreatedTime.ToString("dd MMMM, yyyy")</td>
-                            <td>@item.Amount</td>
+                            <td><a asp-action="Detail" asp-route-id="@item.Id">@item.Name @item.Surname</a></td>
                         </tr>
                     }
                 </tbody>
@@ -34,6 +39,7 @@
 <!--/ Bordered Table -->
 
 <hr class="my-5" />
+
 
 
 
